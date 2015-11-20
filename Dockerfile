@@ -22,6 +22,7 @@ RUN pip install --upgrade pip
 RUN pip install mako
 RUN yum -q -y groupinstall 'Development Tools'
 RUN yum -y install module-init-tools
+RUN yum -y install freetype freetype-devel libpng-devel
 
 
 #################################################################################################################
@@ -69,6 +70,7 @@ RUN echo /opt/OpenBLAS/lib >  /etc/ld.so.conf.d/openblas.conf
 RUN ldconfig
 ENV LD_LIBRARY_PATH=/opt/OpenBLAS/lib:$LD_LIBRARY_PATH
 
+RUN pip install -U pip
 RUN cd ~/src && \
   git clone  -b maintenance/1.9.x https://github.com/numpy/numpy && \
   cd numpy && \
